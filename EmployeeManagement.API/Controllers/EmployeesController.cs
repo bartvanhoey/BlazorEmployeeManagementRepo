@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using EmployeeManagement.API.Models;
 using EmployeeManagement.Models;
@@ -51,6 +52,29 @@ namespace EmployeeManagement.API.Controllers
             }
         }
 
+
+        [HttpPost]
+        public async Task<ActionResult<Employee>> CreateEmployee(Employee employee)
+        {
+            try
+            {
+                if (employee == null)
+                {
+                    return BadRequest();
+                }
+
+                var createdEmployee = await _employeeRepository.AddEmployee(employee);
+
+                return CreatedAtAction(nameof(GetEmployee), new {id = createdEmployee.EmployeeId}, createdEmployee);
+                ;
+
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving data from the database");
+            }
+        }
 
     }
 }
