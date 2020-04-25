@@ -81,7 +81,7 @@ namespace EmployeeManagement.API.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<ActionResult<Employee>> UpdateEmployee(int id, Employee employee)
         {
             try
@@ -99,6 +99,25 @@ namespace EmployeeManagement.API.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error updating data from the database");
+            }
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<Employee>> DeleteEmployee(int id)
+        {
+            try
+            {
+                var employeeToDelete = await _employeeRepository.GetEmployee(id);
+
+                if (employeeToDelete == null)
+                    return NotFound($"Employee with ID {id} not found");
+
+                return await _employeeRepository.DeleteEmployee(id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
             }
         }
 
