@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using EmployeeManagement.API.Models;
 using EmployeeManagement.Models;
@@ -63,13 +62,19 @@ namespace EmployeeManagement.API.Controllers
                     return BadRequest();
                 }
 
+                var emp = await _employeeRepository.GetEmployeeByEmail(employee.Email);
+
+                if (emp != null)
+                {
+                    ModelState.AddModelError("email", "Employee already in use");
+                    return BadRequest(ModelState);
+                }
+
                 var createdEmployee = await _employeeRepository.AddEmployee(employee);
 
                 return CreatedAtAction(nameof(GetEmployee), new {id = createdEmployee.EmployeeId}, createdEmployee);
-                ;
-
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     "Error retrieving data from the database");
