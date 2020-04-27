@@ -50,6 +50,13 @@ namespace EmployeeManagement.API
 
             app.UseAuthorization();
 
+            
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetService<AppDbContext>();
+                dbContext.Database.EnsureCreated();
+            }
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

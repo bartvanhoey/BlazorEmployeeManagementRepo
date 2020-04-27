@@ -1,0 +1,22 @@
+EXCEPTION
+An unhandled exception occurred while processing the request.
+AuthenticationException: The remote certificate is invalid according to the validation procedure.
+System.Net.Security.SslStream.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+
+HttpRequestException: The SSL connection could not be established, see inner exception.
+System.Net.Http.ConnectHelper.EstablishSslConnectionAsyncCore(Stream stream, SslClientAuthenticationOptions sslOptions, CancellationToken cancellationToken)
+
+Stack Query Cookies Headers Routing
+
+When you run the code using VS 2019, it installs a self-signed certificate on your machine for https redirection. (a message box is displayed informing the certificate installation).
+
+But VS code doesn't do it for you.
+
+Read this doc should help : https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-3.0&tabs=visual-studio#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos
+
+SOLUTION
+
+dotnet dev-certs https --clean
+dotnet dev-certs https --trust
+
+--------------------------------------------------------------------------------------------------------------------------------
