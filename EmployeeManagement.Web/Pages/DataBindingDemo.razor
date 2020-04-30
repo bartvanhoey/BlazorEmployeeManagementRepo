@@ -32,3 +32,9 @@
 <div @bind-style="Colour" @bind-style:event="onchange">
     <h3>The background colour of this text changes</h3>
 </div>
+
+<div><textarea name="text-area" @bind="Description" @bind:event="oninput" id="" cols="30" rows="10"></textarea></div>
+
+<div>
+    Count: @Description.Length
+</div>
