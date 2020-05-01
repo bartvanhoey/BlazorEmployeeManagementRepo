@@ -21,5 +21,14 @@ namespace EmployeeManagement.Web.Pages
         {
             Employees = (await EmployeeService.GetEmployees()).ToList();
         }
+
+        public int CountSelectedEmployees { get; set; }
+
+        public void EmployeesSelectionChanged(bool isSelected){
+            if (isSelected)
+                CountSelectedEmployees++;
+            else
+                CountSelectedEmployees--;
+        }
     }
 }
