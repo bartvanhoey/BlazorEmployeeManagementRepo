@@ -8,17 +8,17 @@ namespace EmployeeManagement.Web.Models
     public class EditEmployeeModel
     {
         public int EmployeeId { get; set; }
-        [Required(ErrorMessage= "First Name must be provided")]
+        [Required(ErrorMessage = "First Name must be provided")]
         [MinLength(2)]
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
 
         [EmailAddress]
-        [EmailDomainValidator(AllowedDomain="PragimTech.com", ErrorMessage="You must use PragimTech.com as Domain")]
+        [EmailDomainValidator(AllowedDomain = "PragimTech.com", ErrorMessage = "You must use PragimTech.com as Domain")]
         public string Email { get; set; }
 
-        [CompareProperty(nameof(Email), ErrorMessage="Email and Confirm Email must match")]
+        [CompareProperty(nameof(Email), ErrorMessage = "Email and Confirm Email must match")]
         public string ConfirmEmail { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }
@@ -27,6 +27,6 @@ namespace EmployeeManagement.Web.Models
         [ValidateComplexType]
         public Department Department { get; set; } = new Department();
 
-    
+
     }
 }
