@@ -1,7 +1,7 @@
 @page "/editemployee/{id}" 
 @inherits EditEmployeeBase
 
-<EditForm Model="@EditEmployeeModel" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@EditEmployeeModel" OnValidSubmit="HandleValidSubmitAsync">
     <ObjectGraphDataAnnotationsValidator/>
     <ValidationSummary/>
     <h3>Edit Employee</h3>
