@@ -18,28 +18,37 @@ namespace EmployeeManagement.API.Models
         {
             base.OnModelCreating(modelBuilder);
 
+            var department1 = new Department { DepartmentId = 1, DepartmentName = "IT" };
+            var department2 = new Department { DepartmentId = 2, DepartmentName = "HR" };
+            var department3 = new Department { DepartmentId = 3, DepartmentName = "Payroll" };
+            var department4 = new Department { DepartmentId = 4, DepartmentName = "Admin" };
+
             //Seed Departments Table
-            modelBuilder.Entity<Department>().HasData(
-                new Department { DepartmentId = 1, DepartmentName = "IT" });
-            modelBuilder.Entity<Department>().HasData(
-                new Department { DepartmentId = 2, DepartmentName = "HR" });
-            modelBuilder.Entity<Department>().HasData(
-                new Department { DepartmentId = 3, DepartmentName = "Payroll" });
-            modelBuilder.Entity<Department>().HasData(
-                new Department { DepartmentId = 4, DepartmentName = "Admin" });
+            modelBuilder.Entity<Department>().HasData(department1);
+            modelBuilder.Entity<Department>().HasData(department2);
+            modelBuilder.Entity<Department>().HasData(department3);
+            modelBuilder.Entity<Department>().HasData(department4);
+
+
 
             // Seed Employee Table
-            modelBuilder.Entity<Employee>().HasData(new Employee
+            modelBuilder.Entity<Employee>(b =>
             {
-                EmployeeId = 1,
-                FirstName = "John",
-                LastName = "Hastings",
-                Email = "David@pragimtech.com",
-                DateOfBirth = new DateTime(1980, 10, 5),
-                Gender = Gender.Male,
-                DepartmentId = 1,
-                PhotoPath = "images/john.png"
+                b.HasData(new Employee
+                {
+                    EmployeeId = 1,
+                    FirstName = "John",
+                    LastName = "Hastings",
+                    Email = "David@pragimtech.com",
+                    DateOfBirth = new DateTime(1980, 10, 5),
+                    Gender = Gender.Male,
+                    DepartmentId = 1,
+                    PhotoPath = "images/john.png",
+                    // Department = department1
+                });
+                // b.OwnsOne(e => e.Department).HasData(department1);
             });
+
 
             modelBuilder.Entity<Employee>().HasData(new Employee
             {
