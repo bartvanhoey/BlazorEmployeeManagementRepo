@@ -22,8 +22,9 @@ namespace EmployeeManagement.Web.Services
 
 
         public async Task<IEnumerable<Department>> GetDepartments()
-        {
-            return await httpClient.GetJsonAsync<Department[]>($"api/departments");
+        {   
+            var departments = await httpClient.GetJsonAsync<Department[]>($"api/departments");
+            return departments;
         }
     }
 }
