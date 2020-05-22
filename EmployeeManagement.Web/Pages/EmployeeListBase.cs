@@ -30,5 +30,9 @@ namespace EmployeeManagement.Web.Pages
             else
                 CountSelectedEmployees--;
         }
+
+        protected async Task EmployeeDeleted(){
+            Employees =  (await EmployeeService.GetEmployees()).ToList();
+        }
     }
 }
