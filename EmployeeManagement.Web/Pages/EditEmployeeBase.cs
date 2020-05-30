@@ -8,20 +8,18 @@ using EmployeeManagement.Models;
 using EmployeeManagement.Web.Models;
 using EmployeeManagement.Web.Services;
 using Microsoft.AspNetCore.Components;
+using PragimTech.Components;
 
 namespace EmployeeManagement.Web.Pages
 {
     public class EditEmployeeBase : ComponentBase
     {
 
-        [Inject]
-        public IEmployeeService EmployeeService { get; set; }
-        [Inject]
-        public IDepartmentService DepartmentService { get; set; }
-        [Inject]
-        public IMapper Mapper { get; set; }
-        [Inject]
-        public NavigationManager NavigationManager { get; set; }
+        [Inject] public IEmployeeService EmployeeService { get; set; }
+        [Inject] public IDepartmentService DepartmentService { get; set; }
+        [Inject] public IMapper Mapper { get; set; }
+        [Inject] public NavigationManager NavigationManager { get; set; }
+        public ConfirmBase DeleteConfirmation { get; set; }
         public List<Department> Departments { get; set; } = new List<Department>();
         private Employee Employee { get; set; } = new Employee();
         public EditEmployeeModel EditEmployeeModel { get; set; } = new EditEmployeeModel();
@@ -72,10 +70,14 @@ namespace EmployeeManagement.Web.Pages
             }
         }
 
-        protected async Task Delete_Click()
+        protected void Delete_Click() => DeleteConfirmation.Show();
+        protected async Task ConfirmDelete_Click(bool value)
         {
-            await EmployeeService.DeleteEmployee(EditEmployeeModel.EmployeeId);
-            NavigationManager.NavigateTo("/");
+            if (value == true)
+            {
+                await EmployeeService.DeleteEmployee(EditEmployeeModel.EmployeeId);
+                NavigationManager.NavigateTo("/");
+            }
         }
     }
 }

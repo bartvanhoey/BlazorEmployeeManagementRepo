@@ -2,14 +2,17 @@ using System.Threading.Tasks;
 using EmployeeManagement.Models;
 using EmployeeManagement.Web.Services;
 using Microsoft.AspNetCore.Components;
+using PragimTech.Components;
 
 namespace EmployeeManagement.Web.Pages
 {
     public class DisplayEmployeeBase : ComponentBase
     {
-       
+
         [Inject]
         public IEmployeeService EmployeeService { get; set; }
+
+        public ConfirmBase DeleteConfirmation { get; set; }
 
         [Parameter]
         public Employee Employee { get; set; }
@@ -20,7 +23,7 @@ namespace EmployeeManagement.Web.Pages
         [Parameter]
         public EventCallback<bool> OnEmployeeSelection { get; set; }
 
-         [Parameter]
+        [Parameter]
         public EventCallback<int> OnEmployeeDeleted { get; set; }
 
         public async Task CheckBoxChanged(ChangeEventArgs e)
@@ -28,9 +31,15 @@ namespace EmployeeManagement.Web.Pages
             await OnEmployeeSelection.InvokeAsync((bool)e.Value);
         }
 
-        public async Task Delete_Click() {
-            await EmployeeService.DeleteEmployee(Employee.EmployeeId);
-            await OnEmployeeDeleted.InvokeAsync(Employee.EmployeeId);
+        protected void Delete_Click() => DeleteConfirmation.Show();
+
+        protected async Task ConfirmDelete_Click(bool value)
+        {
+            if (value == true)
+            {
+                await EmployeeService.DeleteEmployee(Employee.EmployeeId);
+                await OnEmployeeDeleted.InvokeAsync(Employee.EmployeeId);
+            }
         }
     }
 }

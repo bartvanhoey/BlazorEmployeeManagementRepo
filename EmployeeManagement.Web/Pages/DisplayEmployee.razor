@@ -16,3 +16,7 @@
     </div>
     }
 </div>
+
+<Confirm @ref="DeleteConfirmation" Title="Delete Employee!" 
+    Message="@($"Are you sure you to delete \"{Employee.FirstName}\"")" 
+    ConfirmationChanged="ConfirmDelete_Click"></Confirm>
