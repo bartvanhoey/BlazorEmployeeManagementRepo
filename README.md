@@ -1,1 +1,1 @@
-# BlazorEmployeeManagementRepo
+# Blazor tutorial for beginners - Pragimtech
