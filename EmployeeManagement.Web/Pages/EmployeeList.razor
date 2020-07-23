@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inherits EmployeeListBase
+@attribute [Authorize]
 
 <h3>Count Employees Selected: @CountSelectedEmployees</h3>
 @if (Employees == null)
