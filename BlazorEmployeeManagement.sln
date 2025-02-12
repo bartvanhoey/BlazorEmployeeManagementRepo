@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagement.Web", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagement.API", "EmployeeManagement.API\EmployeeManagement.API.csproj", "{697586AA-EB8D-483A-920D-F5A0C95143EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PragimTech.Components", "PragimTech.Components\PragimTech.Components.csproj", "{09E7DEE0-9B26-4973-A39B-D9D02EC7A90D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{697586AA-EB8D-483A-920D-F5A0C95143EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{697586AA-EB8D-483A-920D-F5A0C95143EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{697586AA-EB8D-483A-920D-F5A0C95143EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09E7DEE0-9B26-4973-A39B-D9D02EC7A90D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09E7DEE0-9B26-4973-A39B-D9D02EC7A90D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09E7DEE0-9B26-4973-A39B-D9D02EC7A90D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09E7DEE0-9B26-4973-A39B-D9D02EC7A90D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
