@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using EmployeeManagement.Models;
-using Microsoft.AspNetCore.Components;
+using System.Net.Http.Json;
 
 namespace EmployeeManagement.Web.Services
 {
@@ -17,7 +17,9 @@ namespace EmployeeManagement.Web.Services
 
         public async Task<Employee> CreateEmployee(Employee employee)
         {
-            return await _httpClient.PostJsonAsync<Employee>($"api/employees", employee);
+            var response = await _httpClient.PostAsJsonAsync("api/employees", employee);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<Employee>();
         }
 
         public async Task DeleteEmployee(int id)
@@ -27,18 +29,20 @@ namespace EmployeeManagement.Web.Services
 
         public async Task<Employee> GetEmployee(int id)
         {
-            return await _httpClient.GetJsonAsync<Employee>($"api/employees/{id}");
+            return await _httpClient.GetFromJsonAsync<Employee>($"api/employees/{id}");
         }
 
 
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
-            return await _httpClient.GetJsonAsync<Employee[]>("api/employees");
+            return await _httpClient.GetFromJsonAsync<Employee[]>("api/employees");
         }
 
         public async Task<Employee> UpdateEmployee(Employee employee)
         {
-            return await _httpClient.PutJsonAsync<Employee>($"api/employees/{employee.EmployeeId}", employee);
+            var response = await _httpClient.PutAsJsonAsync($"api/employees/{employee.EmployeeId}", employee);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<Employee>();
         }
     }
 }

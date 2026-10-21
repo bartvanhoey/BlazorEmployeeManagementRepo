@@ -18,7 +18,7 @@ namespace EmployeeManagement.Web.Models
         [EmailDomainValidator(AllowedDomain = "PragimTech.com", ErrorMessage = "You must use PragimTech.com as Domain")]
         public string Email { get; set; }
 
-        [CompareProperty(nameof(Email), ErrorMessage = "Email and Confirm Email must match")]
+        [Compare(nameof(Email), ErrorMessage = "Email and Confirm Email must match")]
         public string ConfirmEmail { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }
