@@ -14,6 +14,18 @@ a, .btn-link {
     border-color: #1861ac;
 }
 
+.btn-delete {
+    color: #fff;
+    background-color: #6f42c1;
+    border-color: #643ab0;
+}
+
+.btn-delete:hover, .btn-delete:focus {
+    color: #fff;
+    background-color: #5a32a3;
+    border-color: #512c94;
+}
+
 app {
     position: relative;
     display: flex;
