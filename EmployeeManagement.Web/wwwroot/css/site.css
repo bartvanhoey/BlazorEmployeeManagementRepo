@@ -8,6 +8,12 @@ a, .btn-link {
     color: #0366d6;
 }
 
+.btn-purple, .btn-purple:hover, .btn-purple:focus, .btn-purple:active {
+    color: #fff;
+    background-color: #6f42c1;
+    border-color: #6f42c1;
+}
+
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;
