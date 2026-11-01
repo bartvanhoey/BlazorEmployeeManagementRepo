@@ -1,4 +1,7 @@
 ﻿@inherits LayoutComponentBase
+@inject IJSRuntime JS
+
+<button type="button" class="btn btn-sm btn-secondary theme-toggle" @onclick="ToggleTheme">@(isDark ? "Light mode" : "Dark mode")</button>
 
 <div class="sidebar">
     <NavMenu />
@@ -12,3 +15,22 @@
         Employee Management @DateTime.Now.Year
     </footer>
 </div>
+
+@code {
+    private bool isDark;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            isDark = await JS.InvokeAsync<string>("getTheme") == "dark";
+            StateHasChanged();
+        }
+    }
+
+    private async Task ToggleTheme()
+    {
+        isDark = !isDark;
+        await JS.InvokeVoidAsync("setTheme", isDark ? "dark" : "light");
+    }
+}

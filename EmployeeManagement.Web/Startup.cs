@@ -32,7 +32,7 @@ namespace EmployeeManagement.Web
       services.AddAuthentication("Identity.Application").AddCookie();
       services.AddRazorPages();
       services.AddServerSideBlazor();
-      services.AddAutoMapper(typeof(EmployeeProfile));
+      services.AddAutoMapper(cfg => cfg.AddMaps(typeof(EmployeeProfile)));
       services.AddHttpClient<IEmployeeService, EmployeeService>(client =>
       {
         client.BaseAddress = new Uri("https://localhost:64720/");

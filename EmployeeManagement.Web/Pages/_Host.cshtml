@@ -14,6 +14,16 @@
     <base href="~/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="css/site.css" rel="stylesheet" />
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
+        window.setTheme = function (theme) {
+            localStorage.setItem('theme', theme);
+            document.documentElement.setAttribute('data-theme', theme);
+        };
+        window.getTheme = function () {
+            return document.documentElement.getAttribute('data-theme') || 'light';
+        };
+    </script>
 </head>
 <body>
     <app>
